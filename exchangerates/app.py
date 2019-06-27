@@ -167,6 +167,11 @@ async def exchange_rates(request, date=None):
                 status=400,
             )
 
+    if (rates.__len__() == 1):
+        return json(
+            rates[symbols[0]]
+        )
+
     return json(
         {"base": base, "date": exchange_rates.date.strftime("%Y-%m-%d"), "rates": rates}
     )
